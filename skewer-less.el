@@ -24,7 +24,7 @@
 
 ;; Minor mode allowing LESS stylesheet manipulation via `skewer-mode'.
 
-;; Note that this intended for use in place of `skewer-css-mode',
+;; Note that this is intended for use in place of `skewer-css-mode',
 ;; which does not work with lesscss.
 
 ;; Operates by invoking "less.refresh()" via skewer on demand, or

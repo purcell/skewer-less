@@ -4,7 +4,7 @@ skewer-less.el
 Emacs minor mode allowing [LESS](http://lesscss.org) stylesheet
 manipulation via [skewer-mode](https://github.com/skeeto/skewer-mode).
 
-Note that this intended for use in place of `skewer-css-mode`,
+Note that this is intended for use in place of `skewer-css-mode`,
 which does not work with `LESS`.
 
 Operates by invoking `less.refresh()` via skewer on demand, or
