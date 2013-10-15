@@ -27,6 +27,10 @@
 ;; Note that this is intended for use in place of `skewer-css-mode',
 ;; which does not work with lesscss.
 
+;; Enable `skewer-less-mode' in a ".less" buffer. Save the buffer to
+;; trigger an update, or hit "C-c C-k" just like in
+;; `skewer-css-mode'.
+
 ;; Operates by invoking "less.refresh()" via skewer on demand, or
 ;; whenever the buffer is saved.
 

@@ -42,6 +42,9 @@ Enable `skewer-less` in an individual buffer like this:
 (skewer-less-mode)
 ```
 
+Save the buffer to trigger an update, or hit <kbd>C-c C-k</kbd> just
+like in `skewer-css-mode`.
+
 [marmalade]: http://marmalade-repo.org
 [melpa]: http://melpa.milkbox.net
 
