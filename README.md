@@ -1,3 +1,6 @@
+[![Melpa Status](http://melpa.milkbox.net/packages/skewer-less-badge.svg)](http://melpa.milkbox.net/#/skewer-less)
+[![Melpa Stable Status](http://melpa-stable.milkbox.net/packages/skewer-less-badge.svg)](http://melpa-stable.milkbox.net/#/skewer-less)
+
 skewer-less.el
 ==============
 
