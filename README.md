@@ -1,5 +1,5 @@
-[![Melpa Status](http://melpa.milkbox.net/packages/skewer-less-badge.svg)](http://melpa.milkbox.net/#/skewer-less)
-[![Melpa Stable Status](http://melpa-stable.milkbox.net/packages/skewer-less-badge.svg)](http://melpa-stable.milkbox.net/#/skewer-less)
+[![Melpa Status](http://melpa.org/packages/skewer-less-badge.svg)](http://melpa.org/#/skewer-less)
+[![Melpa Stable Status](http://stable.melpa.org/packages/skewer-less-badge.svg)](http://stable.melpa.org/#/skewer-less)
 
 skewer-less.el
 ==============
@@ -49,7 +49,7 @@ Save the buffer to trigger an update, or hit <kbd>C-c C-k</kbd> just
 like in `skewer-css-mode`.
 
 [marmalade]: http://marmalade-repo.org
-[melpa]: http://melpa.milkbox.net
+[melpa]: http://melpa.org
 
 <hr>
 
