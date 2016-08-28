@@ -10,23 +10,9 @@ manipulation via [skewer-mode](https://github.com/skeeto/skewer-mode).
 Note that this is intended for use in place of `skewer-css-mode`,
 which does not work with `LESS`.
 
-Operates by invoking `less.refresh()` via skewer on demand, or
-whenever the buffer is saved.
-
-For this to work properly, the `less` javascript should be included
-in the target web page, and `less` should be configured in
-development mode, e.g.
-
-```html
-<script>
-  var less = {env: "development"};
-</script>
-<link href="/stylesheets/application.less" rel="stylesheet/less">
-<script src="/path/to/less.js" type="text/javascript"></script>
-```
-
-I may consider providing an option to instead run `lessc` from
-Emacs, then send the output via skewer-css. Let me know if you want this.
+The LESS styles in the current buffer will be passed through `lessc`
+and then to `skewer-css`.  For this to work properly, the `lessc`
+command should be present on `exec-path`.
 
 Installation
 =============
@@ -43,6 +29,12 @@ Enable `skewer-less` in an individual buffer like this:
 
 ```lisp
 (skewer-less-mode)
+```
+
+Alternatively, add `'skewer-less-mode` to your `less-css-mode-hook`:
+
+```lisp
+(add-hook 'less-css-mode-hook 'skewer-less-mode)
 ```
 
 Save the buffer to trigger an update, or hit <kbd>C-c C-k</kbd> just

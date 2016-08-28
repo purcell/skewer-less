@@ -27,34 +27,22 @@
 ;; Note that this is intended for use in place of `skewer-css-mode',
 ;; which does not work with lesscss.
 
-;; Enable `skewer-less-mode' in a ".less" buffer. Save the buffer to
-;; trigger an update, or hit "C-c C-k" just like in
-;; `skewer-css-mode'.
+;; Enable `skewer-less-mode' in a ".less" buffer.  Hit "C-c C-k" just
+;; like in `skewer-css-mode'.  To reload the buffer when you save it,
+;; use code like the following:
 
-;; Operates by invoking "less.refresh()" via skewer on demand, or
-;; whenever the buffer is saved.
-
-;; For this to work properly, the less javascript should be included
-;; in the target web page, and less should be configured in
-;; development mode, e.g.
-
-;;    <script>
-;;      var less = {env: "development"};
-;;    </script>
-;;    <link href="/stylesheets/application.less" rel="stylesheet/less">
-;;    <script src="/path/to/less.js" type="text/javascript"></script>
-
-;; I may consider providing an option to instead run "lessc" from
-;; Emacs, then send the output via skewer-css. Let me know if you want this.
+;; (add-hook 'skewer-less-mode
+;;           (lambda ()
+;;             (add-hook 'after-save-hook 'skewer-less-eval-buffer nil t)))
 
 ;;; Code:
 
-(require 'skewer-mode)
+(require 'skewer-css)
 
 (defvar skewer-less-mode-map
   (let ((m (make-sparse-keymap)))
     ;; for consistency with skewer-css
-    (define-key m (kbd "C-c C-k") 'skewer-less-save-and-reload)
+    (define-key m (kbd "C-c C-k") 'skewer-less-eval-buffer)
     m)
   "Keymap for `skewer-less-mode'.")
 
@@ -62,33 +50,35 @@
 (define-minor-mode skewer-less-mode
   "Minor mode allowing LESS stylesheet manipulation via `skewer-mode'.
 
-Operates by invoking \"less.refresh()\" via skewer whenever the
-buffer is saved.
-
-For this to work properly, the less javascript should be included
-in the target web page, and less should be configured in
-development mode, using:
-
-        var less = {env: \"development\"};
-
-before including \"less.js\"."
+For this to work properly, the lessc command must be available on
+`exec-path', and `skewer' must be running."
   nil
   " skewer-less"
-  skewer-less-mode-map
-  (if skewer-less-mode
-      (add-hook 'after-save-hook 'skewer-less-reload nil t)
-    (remove-hook 'after-save-hook 'skewer-less-reload t)))
+  skewer-less-mode-map)
 
-(defun skewer-less-save-and-reload ()
+;;;###autoload
+(defun skewer-less-eval-buffer ()
   "When skewer appears to be active, ask for a reload."
   (interactive)
-  (save-buffer)
-  (skewer-less-reload))
+  (skewer-less-eval-region (point-min) (point-max)))
 
-(defun skewer-less-reload ()
-  "When skewer appears to be active, ask for a reload."
-  (interactive)
-  (skewer-eval "less.refresh();"))
+;;;###autoload
+(defun skewer-less-eval-region (beg end)
+  "Process the region from BEG to END with \"lessc\", and pass it to `skewer-css'."
+  (interactive "r")
+  (let ((cssbuf "*skewer-less-output*")
+        (errbuf "*skewer-less-errors*"))
+    (if (save-window-excursion (equal 0 (shell-command-on-region beg end "lessc -" cssbuf nil errbuf)))
+        (with-current-buffer cssbuf
+          (skewer-css (buffer-substring-no-properties (point-min) (point-max)))
+          (message "lessc output sent.")
+          ;; Make the output nice to look at
+          (css-mode))
+      (with-current-buffer errbuf
+        ;; Append STDOUT contents
+        (goto-char (point-max))
+        (insert-buffer cssbuf))
+      (display-buffer errbuf))))
 
 
 (provide 'skewer-less)
