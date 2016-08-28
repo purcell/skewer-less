@@ -1,10 +1,10 @@
 ;;; skewer-less.el --- Skewer support for live LESS stylesheet updates
 
-;; Copyright (C) 2013  Steve Purcell
+;; Copyright (C) 2013-2016  Steve Purcell
 
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;; Keywords: languages, tools
-;; Version: DEV
+;; Version: 0
 ;; Package-Requires: ((skewer-mode "1.5.3"))
 
 ;; This program is free software; you can redistribute it and/or modify
