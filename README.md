@@ -17,10 +17,10 @@ command should be present on `exec-path`.
 Installation
 =============
 
-If you choose not to use one of the convenient
-packages in [Melpa][melpa] and [Marmalade][marmalade], you'll need to
-add the directory containing `skewer-less.el` to your `load-path`, and
-then `(require 'skewer-less)`.
+If you choose not to use one of the convenient packages in
+[MELPA][melpa], you'll need to add the directory containing
+`skewer-less.el` to your `load-path`, and then `(require
+'skewer-less)`.
 
 Usage
 =====
@@ -40,7 +40,6 @@ Alternatively, add `'skewer-less-mode` to your `less-css-mode-hook`:
 Save the buffer to trigger an update, or hit <kbd>C-c C-k</kbd> just
 like in `skewer-css-mode`.
 
-[marmalade]: http://marmalade-repo.org
 [melpa]: http://melpa.org
 
 <hr>
