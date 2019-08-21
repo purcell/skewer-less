@@ -28,13 +28,13 @@ Usage
 
 Enable `skewer-less` in an individual buffer like this:
 
-```lisp
+```elisp
 (skewer-less-mode)
 ```
 
 Alternatively, add `'skewer-less-mode` to your `less-css-mode-hook`:
 
-```lisp
+```elisp
 (add-hook 'less-css-mode-hook 'skewer-less-mode)
 ```
 
