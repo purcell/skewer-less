@@ -52,9 +52,8 @@
 
 For this to work properly, the lessc command must be available on
 `exec-path', and `skewer' must be running."
-  nil
-  " skewer-less"
-  skewer-less-mode-map)
+  :lighter " skewer-less"
+  :keymap skewer-less-mode-map)
 
 ;;;###autoload
 (defun skewer-less-eval-buffer ()
